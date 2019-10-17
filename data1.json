@@ -1,0 +1,49 @@
+// {
+//   "cities": {
+//     "Arabic": {
+//       "Ancient cities": "Middle East Studies",
+//       "New cities": "Rit Dubai- Direct enroll"
+//     },
+//     "Spanish": {
+//       "Humanites": "Advanced liberal Arts - Barcelona",
+//       "Sciences": "Santiago - Health Studies"
+//     }
+//   },
+//   "nature": {
+//     "Mountains": {
+//       "South America": "Semester in Cusco",
+//       "Asia": "Big cats of the Himalayas"
+//     },
+//     "Islands": {
+//       "Caribbean": "Marine Resource Studies",
+//       "South Pacific": "Protecting the Phoenix Islands"
+//     }
+//   }
+// },
+{
+  "question": "what do you prefer cities or nature?",
+  "cities": {
+    "question": "what type of city?",
+    "Arabic": {
+      "Ancient cities": "Middle East Studies",
+      "New cities": "Rit Dubai- Direct enroll"
+    },
+    "Spanish": {
+      "Humanites": "Advanced liberal Arts - Barcelona",
+      "Sciences": "Santiago - Health Studies"
+    }
+  },
+  "nature": {
+    "question": "what type of nature?",
+    "Mountains": {
+      "question": "Where mountains?",
+      "South America": "Semester in Cusco",
+      "Asia": "Big cats of the Himalayas"
+    },
+    "Islands": {
+      "question": "what islands?",
+      "Caribbean": "Marine Resource Studies",
+      "South Pacific": "Protecting the Phoenix Islands"
+    }
+  }
+}
