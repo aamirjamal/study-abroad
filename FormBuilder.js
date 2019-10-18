@@ -22,7 +22,6 @@ const FormBuilder = {
 
   createRadioInput: function(options = {}) {
     const div = document.createElement("fieldset");
-    // div.setAttribute("class", "form-group");
     const labelEle = document.createElement("legend");
     const label = document.createTextNode(options.label);
     labelEle.appendChild(label);
@@ -81,7 +80,6 @@ const FormBuilder = {
   },
 
   signIn: function() {
-    // Making Title for main page
     const mainTitle = document.createElement("p");
     const mainTitleText = document.createTextNode("Love With Location");
     mainTitle.classList.add("main-title");
@@ -120,16 +118,23 @@ const FormBuilder = {
     this.name = name;
     this.removeChildren(document.getElementById("form"));
     const names = localStorage.getItem("names");
-    if (names != null) {
-      if (names.indexOf("~" + name + "~") > -1) {
-        console.log("User Exists");
-        this.welcome(name);
-        app.init(name);
+    if (names != null && names.indexOf("~" + name + "~") > -1) {
+      console.log("User Exists");
+      this.welcome(name);
+      const userName = cookies.getCookie(name);
+      if (userName) {
+        console.log("cookie userName", userName);
+        app.init(name, true);
       } else {
-        this.buildForm();
-        document.getElementById("name").value = name;
+        console.log("username not found in cookie");
+        app.init(name, false);
+        // this.buildForm();
+        // document.getElementById("name").value = name;
       }
-    } else this.buildForm();
+    } else {
+      this.buildForm();
+      document.getElementById("name").value = name;
+    }
   },
 
   welcome: function(name) {
@@ -174,7 +179,6 @@ const FormBuilder = {
   },
 
   buildForm: function() {
-    // Side Title for next page
     const sideTitle = document.createElement("p");
     const sideTitleText = document.createTextNode("Love Finder");
     sideTitle.classList.add("side-title");

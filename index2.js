@@ -1,49 +1,80 @@
+/**
+ * This app object is responsible for fetching data and generating select boxes
+ * and setting the cookie values for selected location.
+ */
 const app = {
   data: {
-    question: "what do you prefer cities or nature?",
+    question: "What do you prefer?",
     cities: {
-      question: "what language city?",
+      question: "What do you prefer?",
       Arabic: {
-        question: "what type of city?",
+        question: "What do you prefer?",
         "Ancient cities": {
           text: "Middle East Studies",
           link:
-            "https://rikmt-horizons.symplicity.com/index.php?s=programs&mode=form&id=fa80ac657a94e0ef3cdb6815f261a177"
+            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=0f30e6c7e993fafeda90e8dde9b83467"
         },
         "New cities": {
           text: "Rit Dubai- Direct enroll",
           link:
-            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=fc0905cd6f7264a9ce00289539c1e22b"
+            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=0e062b2cfb65db2f6778cd26aad9311d"
         }
       },
       Spanish: {
-        question: "what program?",
-        Humanites: "Advanced liberal Arts - Barcelona",
-        Sciences: "Santiago - Health Studies"
+        question: "What do you prefer?",
+        Humanites: {
+          text: "Advanced liberal Arts - Barcelona",
+          link:
+            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=473cb41401b20b3d91b31432e80e8e4f"
+        },
+        Sciences: {
+          text: "Santiago - Health Studies",
+          link:
+            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=89894ba735af3935a4611a2205fff648"
+        }
       }
     },
     nature: {
-      question: "what type of nature?",
+      question: "What do you prefer?",
       Mountains: {
-        question: "Where mountains?",
-        "South America": "Semester in Cusco",
-        Asia: "Big cats of the Himalayas"
+        question: "What do you prefer?",
+        "South America": {
+          text: "Semester in Cusco",
+          link:
+            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=ae8939c42459a2b58f247a8e2cff284b"
+        },
+        Asia: {
+          text: "Big cats of the Himalayas",
+          link:
+            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=ddbf516c2873f7087f3d631ca7f239a2"
+        }
       },
       Islands: {
-        question: "what islands?",
-        Caribbean: "Marine Resource Studies",
-        "South Pacific": "Protecting the Phoenix Islands"
+        question: "What do you prefer?",
+        Caribbean: {
+          text: "Marine Resource Studies",
+          link:
+            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=e66910d6fcad2576bea3f4a4dcef3897"
+        },
+        "South Pacific": {
+          text: "Protecting the Phoenix Islands",
+          link:
+            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=1008cf2cf5051059f9138d0787a23388"
+        }
       }
     }
   },
 
   name: undefined,
 
-  init: function(name) {
-    console.log(name);
+  /**
+   * This initialises the selection options for the user.
+   * @param {String} name : name of the user
+   * @param {Bool} savedIncookie : whether the user exists in cookie
+   */
+  init: function(name, savedIncookie) {
     this.name = name;
     const div = document.getElementById("main");
-
     const clearBtn = document.createElement("button");
     const clrDiv = document.createElement("div");
     const clearTxt = document.createTextNode("Start over");
@@ -58,9 +89,74 @@ const app = {
     div.appendChild(clrDiv);
     this.addEditButton();
 
-    this.addSelectionToDOM(this.data);
+    // If user was found in cookie show chosen value,
+    // else show choices for selection.
+    if (!savedIncookie) this.addSelectionToDOM(this.data);
+    else this.addSavedSelection();
   },
 
+  /**
+   * Checks browser compatibility. If not compatible,
+   * shows download link for latest version of chrome.
+   */
+  detectBrowser: function() {
+    if (
+      (BrowserDetect.browser == "Chrome" &&
+        parseInt(BrowserDetect.version) > 75) ||
+      (BrowserDetect.browser == "Firefox" &&
+        parseInt(BrowserDetect.version) > 65) ||
+      (BrowserDetect.browser == "Safari" &&
+        parseInt(BrowserDetect.version) > 11) ||
+      (BrowserDetect.browser == "Netscape" && BrowserDetect.version == "5") // IE 11
+    ) {
+      console.log("Your Browser is compatible");
+      FormBuilder.signIn();
+    } else {
+      const div = document.getElementById("main");
+      const err = document.createElement("h2");
+      const msg = document.createTextNode(
+        "Sorry, your browser is not compatible! :("
+      );
+      err.appendChild(msg);
+      const errMsg = document.createElement("p");
+      const txt = document.createTextNode(
+        "Please download the recommended browser :"
+      );
+      errMsg.appendChild(txt);
+      err.style.marginTop = "100px";
+      const a = document.createElement("a");
+      a.setAttribute("href", "https://www.google.com/intl/en/chrome/");
+      const linktext = document.createTextNode("Chrome");
+      a.appendChild(linktext);
+      div.appendChild(err);
+      div.appendChild(errMsg);
+      div.appendChild(a);
+    }
+  },
+
+  /**
+   * Fetches the selection saved in the cookie for an old user
+   * and displays it.
+   */
+  addSavedSelection: function() {
+    const div = document.getElementById("main");
+    const header = document.createElement("h5");
+    const msg = document.createTextNode("The destination by your choice is:");
+    header.appendChild(msg);
+    div.appendChild(header);
+    const a = document.createElement("a");
+    const linkTxt = cookies.getCookie(this.name);
+    const linkTxtNode = document.createTextNode(linkTxt);
+    a.setAttribute("href", cookies.getCookie(linkTxt));
+    a.appendChild(linkTxtNode);
+    div.appendChild(a);
+  },
+
+  /**
+   * Constructs and add the button which leads to
+   * user form editing and sets the data onto the
+   * form from local storage.
+   */
   addEditButton: function() {
     const div = document.getElementById("main");
     const editBtn = document.createElement("button");
@@ -77,6 +173,11 @@ const app = {
     div.appendChild(editDiv);
   },
 
+  /**
+   * Fetches the data from the url and creates selection
+   * elements dynamically on its basis.
+   * @param {String} url
+   */
   fetchData: function(url) {
     const div = document.getElementById("main");
     const http = new XMLHttpRequest();
@@ -90,6 +191,10 @@ const app = {
     http.send(null);
   },
 
+  /**
+   * Dynamically builds Select element on the basis of data
+   * @param {Object} data : contains sub data options for the select input
+   */
   buildSelectElement: function(data) {
     const sel = document.createElement("select");
     sel.data = data;
@@ -101,7 +206,6 @@ const app = {
     const label = document.createElement("label");
     for (let option of options) {
       if (option == "question") {
-        label.setAttribute("for", "u");
         const ques = document.createTextNode(sel.data[option]);
         label.appendChild(ques);
       } else {
@@ -131,6 +235,14 @@ const app = {
       div.appendChild(sel);
       this.unfade(sel);
     } else {
+      console.log("Setting cookie 1", this.name, data[ele.value].text);
+      console.log(
+        "Setting cookie 2",
+        data[ele.value].text,
+        data[ele.value].link
+      );
+      cookies.setCookie(this.name, data[ele.value].text);
+      cookies.setCookie(data[ele.value].text, data[ele.value].link);
       const a = document.createElement("a");
       const ans = document.createTextNode(data[ele.value].text);
       a.appendChild(ans);
