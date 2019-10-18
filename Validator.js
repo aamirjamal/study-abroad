@@ -28,10 +28,19 @@ const Validator = {
     return false;
   },
 
-  validateSelect: function(id) {
-    const val = document.getElementById(id).value;
-    if (val != 0) return true;
-    this.addError(`Please select a ${id}!`);
+  // validateSelect: function(id) {
+  //   const val = document.getElementById(id).value;
+  //   if (val != 0) return true;
+  //   this.addError(`Please select a ${id}!`);
+  //   return false;
+  // },
+
+  validateRadio: function(name) {
+    const radios = document.getElementsByName(name);
+    for (radio of radios) {
+      if (radio.checked) return true;
+    }
+    this.addError(`Please select a ${name}!`);
     return false;
   },
 
@@ -51,8 +60,8 @@ const Validator = {
     isNameValid = this.validateName();
     isEmailValid = this.validateEmail();
     isNumberValid = this.validatePhone();
-    isGenderValid = this.validateSelect("gender");
-    isDegreeValid = this.validateSelect("degree");
+    isGenderValid = this.validateRadio("Gender");
+    isDegreeValid = this.validateRadio("Degree");
     return (
       isNameValid &&
       isEmailValid &&

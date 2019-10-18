@@ -7,6 +7,7 @@ const FormBuilder = {
     if (options.type) input.setAttribute("type", options.type);
     if (options.class) input.setAttribute("class", options.class);
     if (options.value) input.setAttribute("value", options.value);
+    if (options.name) input.setAttribute("name", options.name);
     if (options.maxlength) input.setAttribute("max", options.maxlength);
     if (options.placeholder)
       input.setAttribute("placeholder", options.placeholder);
@@ -16,6 +17,26 @@ const FormBuilder = {
     labelEle.appendChild(label);
     div.appendChild(labelEle);
     div.appendChild(input);
+    return div;
+  },
+
+  createRadioInput: function(options = {}) {
+    const div = document.createElement("div");
+    div.setAttribute("class", "form-group");
+    const labelEle = document.createElement("label");
+    const label = document.createTextNode(options.label);
+    labelEle.appendChild(label);
+    div.appendChild(labelEle);
+    for (val of options.values) {
+      const radio = this.createTextInput({
+        id: val,
+        label: val,
+        type: "radio",
+        name: options.label,
+        value: val
+      });
+      div.appendChild(radio);
+    }
     return div;
   },
 
@@ -165,18 +186,20 @@ const FormBuilder = {
       maxlength: "10",
       class: "side-text-input"
     });
-    const gender = this.createSelectInput({
-      id: "gender",
-      label: "Gender:",
-      values: ["Male", "Female"],
-      class: "side-text-input"
+    const gender = this.createRadioInput({
+      label: "Gender",
+      values: ["Male", "Female"]
     });
-    const degree = this.createSelectInput({
-      id: "degree",
-      label: "Degree:",
-      values: ["Undergrad", "Grad", "PhD"],
-      class: "side-text-input"
+    const degree = this.createRadioInput({
+      label: "Degree",
+      values: ["Bachelors", "Masters", "PhD"]
     });
+    // const degree = this.createSelectInput({
+    //   id: "degree",
+    //   label: "Degree:",
+    //   values: ["Undergrad", "Grad", "PhD"],
+    //   class: "side-text-input"
+    // });
 
     const btn = document.createElement("button");
     const btnTxt = document.createTextNode("Find Destination");
