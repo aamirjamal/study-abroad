@@ -55,12 +55,12 @@ const FormBuilder = {
   signIn: function() {
     // Making Title for main page
     const mainTitle = document.createElement("p");
-    const mainTitleIcon = document.createTextNode("Love Finder");
+    const mainTitleText = document.createTextNode("Love Finder");
     mainTitle.classList.add("main-title");
+    mainTitle.appendChild(mainTitleText);
+    const mainTitleIcon = document.createElement("i");
+    mainTitleIcon.classList.add("fas","fa-heart");
     mainTitle.appendChild(mainTitleIcon);
-    const main_title_icon = document.createElement("i");
-    main_title_icon.classList.add("fas","fa-heart");
-    mainTitle.appendChild(main_title_icon);
 
 
     const name = this.createTextInput({
@@ -135,37 +135,50 @@ const FormBuilder = {
 
   buildForm: function() {
 
-    // Making Title for next page
-    const side_title = document.createElement("h2");
-    const side_title_text = document.createTextNode("Love Finder");
-    side_title.classList.add("side-title");
-    side_title.appendChild(side_title_text);
+    // Side Title for next page
+    const sideTitle = document.createElement("p");
+    const sideTitleText = document.createTextNode("Love Finder");
+    sideTitle.classList.add("side-title");
+    sideTitle.appendChild(sideTitleText);
+    const sideTitleIcon = document.createElement("i");
+    sideTitleIcon.classList.add("fas","fa-heart");
+    sideTitle.appendChild(sideTitleIcon);
 
     const form = document.getElementById("form");
     const clearBtn = document.createElement("button");
     const clearBtnTxt = document.createTextNode("Clear");
     clearBtn.appendChild(clearBtnTxt);
+
     const name = this.createTextInput({
       id: "name",
-      label: "Name:",
-      placeholder: "Full Name"
+      label: "",
+      placeholder: "Full Name",
+      class: "side-text-input"
     });
-    const email = this.createTextInput({ id: "email", label: "Email" });
+    const email = this.createTextInput({
+      id: "email",
+      label: "",
+      placeholder: "Email",
+      class: "side-text-input"
+    });
     const phn = this.createTextInput({
       id: "phone",
-      label: "Phone Number:",
-      placeholder: "(123) 456-7890",
-      maxlength: "10"
+      label: "",
+      placeholder: "Phone Number",
+      maxlength: "10",
+      class: "side-text-input"
     });
     const gender = this.createSelectInput({
       id: "gender",
       label: "Gender:",
-      values: ["Male", "Female"]
+      values: ["Male", "Female"],
+      class: "side-text-input"
     });
     const degree = this.createSelectInput({
       id: "degree",
       label: "Degree:",
-      values: ["Undergrad", "Grad", "PhD"]
+      values: ["Undergrad", "Grad", "PhD"],
+      class: "side-text-input"
     });
 
     const btn = document.createElement("button");
@@ -195,19 +208,21 @@ const FormBuilder = {
         app.init(this.name);
       }
     });
+    btn.classList.add("btn","btn-dark");
 
     clearBtn.addEventListener("click", () => {
       this.removeChildren(form);
       this.buildForm();
     });
+    clearBtn.classList.add("btn","btn-dark");
 
-    form.appendChild(side_title);
-    form.appendChild(clearBtn);
+    form.appendChild(sideTitle);
     form.appendChild(name);
     form.appendChild(email);
     form.appendChild(phn);
     form.appendChild(gender);
     form.appendChild(degree);
+    form.appendChild(clearBtn);
     form.appendChild(btn);
     form.appendChild(errDiv);
   }

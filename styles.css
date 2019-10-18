@@ -20,6 +20,20 @@ body {
 	font-size: 2vh;
 }
 
+.side-title {
+	text-align: center;
+	margin-top: 10vh;
+	margin-bottom: 5vh;
+	color: #e57373;
+	font-weight: 700;
+	font-size: 6vh;
+	font-family: 'Lovers Quarrel', cursive;
+}
+
+.side-title i {
+	font-size: 1vh;
+}
+
 .text-input {
 	-webkit-border-radius: 25px;
 	-moz-border-radius: 25px;
@@ -28,7 +42,36 @@ body {
 	height: 5vh;
 	font-size: 3vh;
 	padding: 0 10px 0 10px ;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+}
 
+.side-text-input {
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+	width: 25vw;
+	height: 5vh;
+	font-size: 3vh;
+	padding: 0 10px 0 10px ;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+}
+
+::-webkit-input-placeholder {
+	text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+	text-align: center;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+	text-align: center;
+}
+
+:-ms-input-placeholder {
+	text-align: center;
 }
 
 .btn {
