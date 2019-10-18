@@ -37,19 +37,44 @@ const app = {
     }
   },
 
-  init: function() {
+  name: undefined,
+
+  init: function(name) {
+    console.log(name);
+    this.name = name;
     const div = document.getElementById("main");
+
     const clearBtn = document.createElement("button");
-    const span = document.createElement("div");
+    const clrDiv = document.createElement("div");
     const clearTxt = document.createTextNode("Start over");
     clearBtn.appendChild(clearTxt);
     clearBtn.addEventListener("click", () => {
       this.removeParentSiblings(clearBtn);
+      this.addEditButton();
       this.addSelectionToDOM(this.data);
     });
-    span.appendChild(clearBtn);
-    div.appendChild(span);
+    clrDiv.appendChild(clearBtn);
+
+    div.appendChild(clrDiv);
+    this.addEditButton();
+
     this.addSelectionToDOM(this.data);
+  },
+
+  addEditButton: function() {
+    const div = document.getElementById("main");
+    const editBtn = document.createElement("button");
+    const editDiv = document.createElement("div");
+    const editTxt = document.createTextNode("Edit User");
+    editBtn.appendChild(editTxt);
+    editBtn.addEventListener("click", () => {
+      FormBuilder.removeChildren(div);
+      FormBuilder.buildForm();
+      console.log(name, this.name);
+      FormBuilder.setData(this.name);
+    });
+    editDiv.appendChild(editBtn);
+    div.appendChild(editDiv);
   },
 
   fetchData: function(url) {

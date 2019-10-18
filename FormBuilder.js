@@ -70,12 +70,46 @@ const FormBuilder = {
 
   checkExisting: function() {
     const name = document.getElementById("name").value;
-    const userName = cookies.getCookie("userName");
-    if (!userName) {
-      this.removeChildren(document.getElementById("form"));
-      this.buildForm();
-      document.getElementById("name").value = name;
-    }
+    this.name = name;
+    this.removeChildren(document.getElementById("form"));
+    const names = localStorage.getItem("names");
+    if (names != null) {
+      if (names.indexOf("~" + name + "~") > -1) {
+        this.buildForm();
+        document.getElementById("name").value = name;
+      } else {
+        app.init(name);
+      }
+    } else this.buildForm();
+  },
+
+  getData: function() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phn = document.getElementById("phone").value;
+    const gender = document.getElementById("gender").value;
+    const degree = document.getElementById("degree").value;
+    if (!localStorage.getItem("names")) localStorage.setItem("names", "");
+    const names = localStorage.getItem("names");
+    localStorage.setItem("names", names + "~" + name + "~");
+    localStorage.setItem(name + "~email", email);
+    localStorage.setItem(name + "~phn", phn);
+    localStorage.setItem(name + "~gender", gender);
+    localStorage.setItem(name + "~degree", degree);
+    console.log("Data set in local storage");
+  },
+
+  setData: function(name) {
+    const email = localStorage.getItem(name + "~email");
+    const phn = localStorage.getItem(name + "~phone");
+    const gender = localStorage.getItem(name + "~gender");
+    const degree = localStorage.getItem(name + "~degree");
+    document.getElementById("name").value = name;
+    document.getElementById("email").value = email;
+    document.getElementById("phone").value = phn;
+    document.getElementById("gender").value = gender;
+    document.getElementById("degree").value = degree;
+    console.log("Data fetch from local storage");
   },
 
   buildForm: function() {
@@ -125,11 +159,12 @@ const FormBuilder = {
 
     btn.addEventListener("click", () => {
       if (Validator.validate()) {
+        this.getData();
         this.removeChildren(form);
         // app.fetchData(
         //   `https://raw.githubusercontent.com/ashwani20/Interactive-Form-Elements/6c90df5c3eafd4c6e173ef796f4d0de85ed96524/data1.json`
         // );
-        app.init();
+        app.init(this.name);
       }
     });
 
