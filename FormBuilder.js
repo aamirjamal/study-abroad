@@ -122,12 +122,22 @@ const FormBuilder = {
     const names = localStorage.getItem("names");
     if (names != null) {
       if (names.indexOf("~" + name + "~") > -1) {
+        console.log("User Exists");
+        this.welcome(name);
+        app.init(name);
+      } else {
         this.buildForm();
         document.getElementById("name").value = name;
-      } else {
-        app.init(name);
       }
     } else this.buildForm();
+  },
+
+  welcome: function(name) {
+    const form = document.getElementById("form");
+    const h5ele = document.createElement("h5");
+    const msg = document.createTextNode(`Welcome again ${name}!`);
+    h5ele.appendChild(msg);
+    form.appendChild(h5ele);
   },
 
   getData: function() {
@@ -209,6 +219,10 @@ const FormBuilder = {
       label: "Degree",
       values: ["Bachelors", "Masters", "PhD"]
     });
+    const dataset = this.createRadioInput({
+      label: "Dataset",
+      values: ["Dataset1", "Dataset2"]
+    });
     // const degree = this.createSelectInput({
     //   id: "degree",
     //   label: "Degree:",
@@ -259,6 +273,7 @@ const FormBuilder = {
     form.appendChild(phn);
     form.appendChild(gender);
     form.appendChild(degree);
+    form.appendChild(dataset);
     form.appendChild(clearBtn);
     form.appendChild(btn);
     form.appendChild(errDiv);

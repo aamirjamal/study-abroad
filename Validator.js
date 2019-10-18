@@ -62,12 +62,14 @@ const Validator = {
     isNumberValid = this.validatePhone();
     isGenderValid = this.validateRadio("Gender");
     isDegreeValid = this.validateRadio("Degree");
+    isDatasetValid = this.validateRadio("Dataset");
     return (
       isNameValid &&
       isEmailValid &&
       isNumberValid &&
       isGenderValid &&
-      isDegreeValid
+      isDegreeValid &&
+      isDatasetValid
     );
   }
 };
