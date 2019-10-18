@@ -164,7 +164,11 @@ const FormBuilder = {
 
     const form = document.getElementById("form");
     const clearBtn = document.createElement("button");
-    const clearBtnTxt = document.createTextNode("Clear");
+    const clearBtnTxt = document.createTextNode(" Clear");
+    const clearBtnIcon = document.createElement("i");
+    clearBtnIcon.classList.add("fas", "fa-broom");
+    clearBtn.appendChild(clearBtnIcon);
+    clearBtn.classList.add("btn", "btn-dark");
     clearBtn.appendChild(clearBtnTxt);
 
     const name = this.createTextInput({
@@ -202,9 +206,13 @@ const FormBuilder = {
     // });
 
     const btn = document.createElement("button");
-    const btnTxt = document.createTextNode("Find Destination");
+    const btnTxt = document.createTextNode("Find ");
     btn.setAttribute("id", "btn");
     btn.appendChild(btnTxt);
+    const btnIcon = document.createElement("i");
+    btnIcon.classList.add("fas", "fa-plane-departure");
+    btn.appendChild(btnIcon);
+    btn.classList.add("btn", "btn-dark");
 
     const errDiv = document.createElement("div");
     errDiv.setAttribute("id", "error");
@@ -228,13 +236,12 @@ const FormBuilder = {
         app.init(this.name);
       }
     });
-    btn.classList.add("btn", "btn-dark");
 
     clearBtn.addEventListener("click", () => {
       this.removeChildren(form);
       this.buildForm();
     });
-    clearBtn.classList.add("btn", "btn-dark");
+
 
     form.appendChild(sideTitle);
     form.appendChild(name);
