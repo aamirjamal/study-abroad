@@ -1,7 +1,7 @@
 const FormBuilder = {
   createTextInput: function(options = {}) {
     const div = document.createElement("div");
-    div.setAttribute("class","form-group");
+    div.setAttribute("class", "form-group");
     const input = document.createElement("input");
     if (options.id) input.setAttribute("id", options.id);
     if (options.type) input.setAttribute("type", options.type);
@@ -59,9 +59,8 @@ const FormBuilder = {
     mainTitle.classList.add("main-title");
     mainTitle.appendChild(mainTitleText);
     const mainTitleIcon = document.createElement("i");
-    mainTitleIcon.classList.add("fas","fa-heart");
+    mainTitleIcon.classList.add("fas", "fa-heart");
     mainTitle.appendChild(mainTitleIcon);
-
 
     const name = this.createTextInput({
       id: "name",
@@ -70,13 +69,12 @@ const FormBuilder = {
       class: "text-input"
     });
 
-
     const nextButton = document.createElement("button");
-    nextButton.classList.add("btn","btn-dark");
+    nextButton.classList.add("btn", "btn-dark");
     const nextButtonTxt = document.createTextNode("Next ");
     nextButton.appendChild(nextButtonTxt);
     const nextButtonIcon = document.createElement("i");
-    nextButtonIcon.classList.add("fas","fa-arrow-circle-right");
+    nextButtonIcon.classList.add("fas", "fa-arrow-circle-right");
     nextButton.appendChild(nextButtonIcon);
 
     nextButton.addEventListener("click", () => {
@@ -134,14 +132,13 @@ const FormBuilder = {
   },
 
   buildForm: function() {
-
     // Side Title for next page
     const sideTitle = document.createElement("p");
     const sideTitleText = document.createTextNode("Love Finder");
     sideTitle.classList.add("side-title");
     sideTitle.appendChild(sideTitleText);
     const sideTitleIcon = document.createElement("i");
-    sideTitleIcon.classList.add("fas","fa-heart");
+    sideTitleIcon.classList.add("fas", "fa-heart");
     sideTitle.appendChild(sideTitleIcon);
 
     const form = document.getElementById("form");
@@ -208,13 +205,13 @@ const FormBuilder = {
         app.init(this.name);
       }
     });
-    btn.classList.add("btn","btn-dark");
+    btn.classList.add("btn", "btn-dark");
 
     clearBtn.addEventListener("click", () => {
       this.removeChildren(form);
       this.buildForm();
     });
-    clearBtn.classList.add("btn","btn-dark");
+    clearBtn.classList.add("btn", "btn-dark");
 
     form.appendChild(sideTitle);
     form.appendChild(name);
@@ -227,6 +224,3 @@ const FormBuilder = {
     form.appendChild(errDiv);
   }
 };
-
-
-
