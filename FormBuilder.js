@@ -54,11 +54,13 @@ const FormBuilder = {
 
   signIn: function() {
     // Making Title for main page
-    const main_title = document.createElement("h1");
-    const main_title_text = document.createTextNode("Love Finder");
-    main_title.classList.add("main-title");
-    main_title.appendChild(main_title_text);
-    // main_title.appendChild("<i class='fas fa-heart'></i>")
+    const mainTitle = document.createElement("p");
+    const mainTitleIcon = document.createTextNode("Love Finder");
+    mainTitle.classList.add("main-title");
+    mainTitle.appendChild(mainTitleIcon);
+    const main_title_icon = document.createElement("i");
+    main_title_icon.classList.add("fas","fa-heart");
+    mainTitle.appendChild(main_title_icon);
 
 
     const name = this.createTextInput({
@@ -70,15 +72,19 @@ const FormBuilder = {
 
 
     const nextButton = document.createElement("button");
-    // nextButton.innerHTML =  "Next <i class='fas fa-arrow-circle-right'></i>" ;
     nextButton.classList.add("btn","btn-dark");
+    const nextButtonTxt = document.createTextNode("Next ");
+    nextButton.appendChild(nextButtonTxt);
+    const nextButtonIcon = document.createElement("i");
+    nextButtonIcon.classList.add("fas","fa-arrow-circle-right");
+    nextButton.appendChild(nextButtonIcon);
 
     nextButton.addEventListener("click", () => {
       this.checkExisting();
     });
     const form = document.getElementById("form");
     form.classList.add("input-form");
-    form.appendChild(main_title);
+    form.appendChild(mainTitle);
     form.appendChild(name);
     form.appendChild(nextButton);
   },
@@ -171,3 +177,6 @@ const FormBuilder = {
     form.appendChild(errDiv);
   }
 };
+
+
+
