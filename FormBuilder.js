@@ -58,7 +58,7 @@ const FormBuilder = {
     const main_title_text = document.createTextNode("Love Finder");
     main_title.classList.add("main-title");
     main_title.appendChild(main_title_text);
-    main_title.appendChild("<i class='fas fa-heart'></i>")
+    // main_title.appendChild("<i class='fas fa-heart'></i>")
 
 
     const name = this.createTextInput({
