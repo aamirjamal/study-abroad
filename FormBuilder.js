@@ -21,9 +21,9 @@ const FormBuilder = {
   },
 
   createRadioInput: function(options = {}) {
-    const div = document.createElement("div");
-    div.setAttribute("class", "form-group");
-    const labelEle = document.createElement("label");
+    const div = document.createElement("fieldset");
+    // div.setAttribute("class", "form-group");
+    const labelEle = document.createElement("legend");
     const label = document.createTextNode(options.label);
     labelEle.appendChild(label);
     div.appendChild(labelEle);
@@ -67,6 +67,13 @@ const FormBuilder = {
     return div;
   },
 
+  getRadioVal: function(name) {
+    const radios = document.getElementsByName(name);
+    for (radio of radios) {
+      if (radio.checked) return radio.value;
+    }
+  },
+
   removeChildren: function(element) {
     while (element.hasChildNodes()) {
       element.removeChild(element.lastChild);
@@ -76,7 +83,7 @@ const FormBuilder = {
   signIn: function() {
     // Making Title for main page
     const mainTitle = document.createElement("p");
-    const mainTitleText = document.createTextNode("Love Finder");
+    const mainTitleText = document.createTextNode("Love With Location");
     mainTitle.classList.add("main-title");
     mainTitle.appendChild(mainTitleText);
     const mainTitleIcon = document.createElement("i");
@@ -127,8 +134,8 @@ const FormBuilder = {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const phn = document.getElementById("phone").value;
-    const gender = document.getElementById("gender").value;
-    const degree = document.getElementById("degree").value;
+    const gender = this.getRadioVal("Gender");
+    const degree = this.getRadioVal("Degree");
     if (!localStorage.getItem("names")) localStorage.setItem("names", "");
     const names = localStorage.getItem("names");
     localStorage.setItem("names", names + "~" + name + "~");
@@ -147,9 +154,13 @@ const FormBuilder = {
     document.getElementById("name").value = name;
     document.getElementById("email").value = email;
     document.getElementById("phone").value = phn;
-    document.getElementById("gender").value = gender;
-    document.getElementById("degree").value = degree;
-    console.log("Data fetch from local storage");
+    if (gender == "Male") document.getElementById("Male").checked = true;
+    if (gender == "Female") document.getElementById("Female").checked = true;
+    if (degree == "Bachelors")
+      document.getElementById("Bachelors").checked = true;
+    if (degree == "Masters") document.getElementById("Masters").checked = true;
+    if (degree == "PhD") document.getElementById("PhD").checked = true;
+    console.log("Data fetch from local storage", gender, degree);
   },
 
   buildForm: function() {
@@ -241,7 +252,6 @@ const FormBuilder = {
       this.removeChildren(form);
       this.buildForm();
     });
-
 
     form.appendChild(sideTitle);
     form.appendChild(name);
