@@ -1,6 +1,7 @@
 const FormBuilder = {
   createTextInput: function(options = {}) {
     const div = document.createElement("div");
+    div.setAttribute("class","form-group");
     const input = document.createElement("input");
     if (options.id) input.setAttribute("id", options.id);
     if (options.type) input.setAttribute("type", options.type);
@@ -52,18 +53,32 @@ const FormBuilder = {
   },
 
   signIn: function() {
+    // Making Title for main page
+    const main_title = document.createElement("h1");
+    const main_title_text = document.createTextNode("Love Finder");
+    main_title.classList.add("main-title");
+    main_title.appendChild(main_title_text);
+    main_title.appendChild("<i class='fas fa-heart'></i>")
+
+
     const name = this.createTextInput({
       id: "name",
-      label: "Please enter your Name: ",
-      placeholder: "Full Name"
+      label: "",
+      placeholder: "Please enter your full name",
+      class: "text-input"
     });
+
+
     const nextButton = document.createElement("button");
-    const nextBtnTxt = document.createTextNode("Next");
-    nextButton.appendChild(nextBtnTxt);
+    // nextButton.innerHTML =  "Next <i class='fas fa-arrow-circle-right'></i>" ;
+    nextButton.classList.add("btn","btn-dark");
+
     nextButton.addEventListener("click", () => {
       this.checkExisting();
     });
     const form = document.getElementById("form");
+    form.classList.add("input-form");
+    form.appendChild(main_title);
     form.appendChild(name);
     form.appendChild(nextButton);
   },
@@ -79,6 +94,13 @@ const FormBuilder = {
   },
 
   buildForm: function() {
+
+    // Making Title for next page
+    const side_title = document.createElement("h2");
+    const side_title_text = document.createTextNode("Love Finder");
+    side_title.classList.add("side-title");
+    side_title.appendChild(side_title_text);
+
     const form = document.getElementById("form");
     const clearBtn = document.createElement("button");
     const clearBtnTxt = document.createTextNode("Clear");
@@ -138,6 +160,7 @@ const FormBuilder = {
       this.buildForm();
     });
 
+    form.appendChild(side_title);
     form.appendChild(clearBtn);
     form.appendChild(name);
     form.appendChild(email);
