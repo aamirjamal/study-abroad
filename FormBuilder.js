@@ -155,8 +155,10 @@ const FormBuilder = {
       this.welcome(name);
       const userName = cookies.getCookie(name);
       // Checking if user exists in cookies (Selected the location).
-      if (userName) app.init(name, true);
-      else app.init(name, false);
+      const dataset = localStorage.getItem(name + "~dataset");
+      const url = this.getURLFromDataset(dataset);
+      if (userName) app.fetchData(url, name, true);
+      else app.fetchData(url, name, false);
     } else {
       this.buildForm();
       document.getElementById("name").value = name;
@@ -171,6 +173,7 @@ const FormBuilder = {
     const form = document.getElementById("form");
     const h5ele = document.createElement("h5");
     const msg = document.createTextNode(`Welcome again ${name}!`);
+    h5ele.style.marginTop = "30px";
     h5ele.appendChild(msg);
     form.appendChild(h5ele);
   },
@@ -216,11 +219,21 @@ const FormBuilder = {
     console.log("Data fetch from local storage", gender, degree);
   },
 
-  onlyNumber: function(id){
+  onlyNumber: function(id) {
     var DataVal = document.getElementById(id).value;
-    document.getElementById(id).value = DataVal.replace(/[^0-9]/g,'');
+    document.getElementById(id).value = DataVal.replace(/[^0-9]/g, "");
   },
 
+  /**
+   * Returns the url on the basis of dataset chosen.
+   * @param {String} dataset : Dataset name
+   */
+  getURLFromDataset: function(dataset) {
+    if (dataset == "dataset1")
+      return "https://raw.githubusercontent.com/aamirjamal/study-abroad/master/data1.json";
+    else
+      return "https://raw.githubusercontent.com/aamirjamal/study-abroad/master/data2.json";
+  },
 
   /**
    * Builds the form and puts it on the DOM
@@ -260,7 +273,8 @@ const FormBuilder = {
     const phn = this.createTextInput({
       id: "phone",
       label: "",
-      oninput: "this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\\..*)\\./g, '$1');",
+      oninput:
+        "this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\\..*)\\./g, '$1');",
       placeholder: "Phone Number",
       maxlength: "10",
       class: "side-text-input"
@@ -299,25 +313,11 @@ const FormBuilder = {
     const errDiv = document.createElement("div");
     errDiv.setAttribute("id", "error");
 
-    // phn.addEventListener("input", function(e) {
-    //   var x = e.target.value
-    //     .replace(/\D/g, "")
-    //     .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-    //   e.target.value = !x[2]
-    //     ? x[1]
-    //     : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
-    // });
-
     btn.addEventListener("click", () => {
       if (Validator.validate()) {
         this.getData();
         const dataset = document.getElementById("dataset").value;
-        let url =
-          "https://raw.githubusercontent.com/aamirjamal/study-abroad/master/data1.json";
-        if (dataset == "Dataset2")
-          url =
-            "https://raw.githubusercontent.com/aamirjamal/study-abroad/master/data2.json";
-
+        let url = this.getURLFromDataset(dataset);
         this.removeChildren(form);
         app.fetchData(url, this.name);
       }

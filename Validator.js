@@ -79,12 +79,6 @@ const Validator = {
    * @param {String} errorMessage : message to be displayed
    */
   addError: function(errorMessage, node) {
-    // const errDiv = document.getElementById("error");
-    // const err = document.createElement("p");
-    // const msg = document.createTextNode(errMsg);
-    // err.appendChild(msg);
-    // errDiv.appendChild(err);
-
     this.removeError(node);
     const parentNode = node.parentElement;
     const errorNode = document.createElement("p");
@@ -96,9 +90,7 @@ const Validator = {
 
   removeError: function(node) {
     node.parentNode.childNodes.forEach(function(item) {
-        console.log(item.nodeName);
       if (item.nodeName === "P") node.parentNode.removeChild(item);
-      console.log(item);
     });
   },
 
