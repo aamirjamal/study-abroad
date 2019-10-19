@@ -15,7 +15,8 @@ const FormBuilder = {
     if (options.class) input.setAttribute("class", options.class);
     if (options.value) input.setAttribute("value", options.value);
     if (options.name) input.setAttribute("name", options.name);
-    if (options.maxlength) input.setAttribute("max", options.maxlength);
+    if (options.pattern) input.setAttribute("pattern", options.pattern);
+    if (options.maxlength) input.setAttribute("maxlength", options.maxlength);
     if (options.placeholder)
       input.setAttribute("placeholder", options.placeholder);
     const labelEle = document.createElement("label");
@@ -253,6 +254,7 @@ const FormBuilder = {
     const phn = this.createTextInput({
       id: "phone",
       label: "",
+      pattern: "d*",
       placeholder: "Phone Number",
       maxlength: "10",
       class: "side-text-input"
@@ -291,14 +293,14 @@ const FormBuilder = {
     const errDiv = document.createElement("div");
     errDiv.setAttribute("id", "error");
 
-    phn.addEventListener("input", function(e) {
-      var x = e.target.value
-        .replace(/\D/g, "")
-        .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-      e.target.value = !x[2]
-        ? x[1]
-        : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
-    });
+    // phn.addEventListener("input", function(e) {
+    //   var x = e.target.value
+    //     .replace(/\D/g, "")
+    //     .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+    //   e.target.value = !x[2]
+    //     ? x[1]
+    //     : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
+    // });
 
     btn.addEventListener("click", () => {
       if (Validator.validate()) {
