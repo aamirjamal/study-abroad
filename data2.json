@@ -1,0 +1,117 @@
+{
+  "question": "What continent would you like?",
+  "Asia": {
+    "question": "Choose the local language",
+    "Chinese": {
+      "question": "What do you prefer?",
+      "Cities": {
+        "question": "What type of city?",
+        "Developed city": {
+          "text": "Hong Kong University of Science and Technology (HKUST)",
+          "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=edaa8233dfa7de7da9e87b0b61e0e876"
+        },
+        "Developing City": {
+          "text": "Intensive Chinese Language & Culture",
+          "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=c2c463b819fbe57bae5c25f9af9c2b79"
+        }
+      },
+      "Nature": {
+        "question": "What type of nature?",
+        "Mountains": {
+          "text": "Big Cats of the Himalayas: Tracking & Conservation",
+          "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=ddbf516c2873f7087f3d631ca7f239a2"
+        },
+        "Forest": {
+          "text": "Intensive Chinese Language & Culture",
+          "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=c2c463b819fbe57bae5c25f9af9c2b79"
+        }
+      }
+    },
+    "Arabic": {
+      "question": "What do you prefer?",
+      "Modern City": {
+        "question": "How is your budget?",
+        "Expensive": {
+          "text": "Advanced liberal Arts - Barcelona",
+          "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=473cb41401b20b3d91b31432e80e8e4f"
+        },
+        "Moderate": {
+          "text": "Business, Engineering, Arts & Sciences",
+          "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=571fb7465445e53bfd246e90692683cf"
+        }
+      },
+      "Old city": {
+        "text": "Advanced Arabic Language",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=2e03bc10bd153c88817bc99d762f4fde"
+      }
+    },
+    "Japanese": {
+      "question": "How much crowd would you like?",
+      "Densely crowded": {
+        "text": "Advanced liberal Arts - Barcelona",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=473cb41401b20b3d91b31432e80e8e4f"
+      },
+      "Slightly crowded": {
+        "text": "Ancient & Modern Japan",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=969b7143112b0ecdf3669e48ae75aae0"
+      }
+    }
+  },
+  "Europe": {
+    "question": "What local language would you like?",
+    "German": {
+      "question": "What would you like to study?",
+      "Technical": {
+        "text": "Automotive Electronics in Germany",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=978b1130997d1086fa692947f2d556d1"
+      },
+      "Language": {
+        "text": "Berlin - Language and Area Studies",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=d453e8e625ca6dff2ca597ba8e52725d"
+      }
+    },
+    "Spanish": {
+      "question": "What do you prefer?",
+      "Nature": {
+        "text": "Buenos Aires - Advanced Spanish Immersion",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=c4f7d11aea717f3e3d19858bb17952a9"
+      },
+      "City": {
+        "question": "Which country?",
+        "Argentina": {
+          "text": "Buenos Aires - Advanced Spanish Immersion",
+          "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=c4f7d11aea717f3e3d19858bb17952a9"
+        },
+        "Spain": {
+          "text": "Business & Culture - Barcelona",
+          "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=e76c8ec48baec6b5209d074b3f3df64c"
+        }
+      }
+    }
+  },
+  "South America": {
+    "question": "What do you prefer?",
+    "Cities": {
+      "question": "What do you prefer?",
+      "South America": {
+        "text": "Semester in Cusco",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=ae8939c42459a2b58f247a8e2cff284b"
+      },
+      "Asia": {
+        "text": "Big cats of the Himalayas",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=ddbf516c2873f7087f3d631ca7f239a2"
+      }
+    },
+    "Nature": {
+      "question": "What kind of natural beauty?",
+      "Beaches": {
+        "text": "Cuban Studies",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=df112c4fd8530ada0e8cfa71a245d6d4"
+      },
+      "Forest": {
+        "text": "Cross-Cultural Examination: The Food & Beverage Value Chain in the US & Peru",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=b4efa6786629c43e13ca60a77016e93d"
+      }
+    }
+  }
+}
