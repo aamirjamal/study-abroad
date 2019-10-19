@@ -199,7 +199,6 @@ const app = {
     if ("question" in data[ele.value]) {
       const sel = this.buildSelectElement(data[ele.value]);
 
-<<<<<<< HEAD
       div.appendChild(sel);
       this.unfade(sel);
     } else {
@@ -212,33 +211,13 @@ const app = {
       cookies.setCookie(this.name, data[ele.value].text);
       cookies.setCookie(data[ele.value].text, data[ele.value].link);
       const a = document.createElement("a");
+      a.style.margin = "auto";
       const ans = document.createTextNode(data[ele.value].text);
       a.appendChild(ans);
       a.setAttribute("href", data[ele.value].link);
       div.appendChild(a);
     }
   },
-=======
-            div.appendChild(sel);
-            this.unfade(sel);
-        } else {
-            console.log("Setting cookie 1", this.name, data[ele.value].text);
-            console.log(
-                "Setting cookie 2",
-                data[ele.value].text,
-                data[ele.value].link
-            );
-            cookies.setCookie(this.name, data[ele.value].text);
-            cookies.setCookie(data[ele.value].text, data[ele.value].link);
-            const a = document.createElement("a");
-            a.style.margin = "auto";
-            const ans = document.createTextNode(data[ele.value].text);
-            a.appendChild(ans);
-            a.setAttribute("href", data[ele.value].link);
-            div.appendChild(a);
-        }
-    },
->>>>>>> 057cc6bd825b5a535d7338d3caec6f6ab2064bcc
 
   /**
    * Adds the select element on to DOM and gives a fade
