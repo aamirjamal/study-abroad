@@ -20,14 +20,16 @@ const app = {
         const clrDiv = document.createElement("div");
         const clearTxt = document.createTextNode("Start over");
         clearBtn.classList.add("btn", "btn-dark");
+        clrDiv.classList.add("col");
         clearBtn.appendChild(clearTxt);
+
         clearBtn.addEventListener("click", () => {
             this.removeParentSiblings(clearBtn);
             this.addEditButton();
             this.addSelectionToDOM(this.data);
         });
         clrDiv.appendChild(clearBtn);
-
+        clrDiv.style.textAlign = "right";
         div.appendChild(clrDiv);
         this.addEditButton();
 
@@ -102,10 +104,12 @@ const app = {
     addEditButton: function () {
         const div = document.getElementById("main");
         const editBtn = document.createElement("button");
+        const br = document.createElement("br");
         const editDiv = document.createElement("div");
         const editTxt = document.createTextNode("Edit User");
         editBtn.appendChild(editTxt);
         editBtn.classList.add("btn", "btn-dark");
+        editDiv.classList.add("col");
         editBtn.addEventListener("click", () => {
             FormBuilder.removeChildren(div);
             FormBuilder.buildForm();
@@ -113,6 +117,7 @@ const app = {
             FormBuilder.setData(this.name);
         });
         editDiv.appendChild(editBtn);
+        editDiv.style.textAlign = "left";
         div.appendChild(editDiv);
     },
 
@@ -162,15 +167,22 @@ const app = {
             }
         }
         const selDiv = document.createElement("div");
+
         let me = this;
         sel.addEventListener("change", function (e) {
             me.optionSelected(e);
         });
         sel.classList.add("text-input");
+
         selDiv.appendChild(label);
         selDiv.appendChild(br);
         selDiv.appendChild(sel);
+
         selDiv.style.opacity = 0.1;
+        selDiv.style.margin = "auto";
+        // selDiv.style.clear = "both";
+        // selDiv.style.textAlign = "center";
+
         return selDiv;
     },
 
@@ -186,6 +198,7 @@ const app = {
         this.removeParentSiblings(ele);
         if ("question" in data[ele.value]) {
             const sel = this.buildSelectElement(data[ele.value]);
+
             div.appendChild(sel);
             this.unfade(sel);
         } else {
