@@ -20,14 +20,16 @@ const app = {
     const clrDiv = document.createElement("div");
     const clearTxt = document.createTextNode("Start over");
     clearBtn.classList.add("btn", "btn-dark");
+    clrDiv.classList.add("col");
     clearBtn.appendChild(clearTxt);
+
     clearBtn.addEventListener("click", () => {
       this.removeParentSiblings(clearBtn);
       this.addEditButton();
       this.addSelectionToDOM(this.data);
     });
     clrDiv.appendChild(clearBtn);
-
+    clrDiv.style.textAlign = "right";
     div.appendChild(clrDiv);
     this.addEditButton();
 
@@ -49,8 +51,7 @@ const app = {
         parseInt(BrowserDetect.version) > 65) ||
       (BrowserDetect.browser == "Safari" &&
         parseInt(BrowserDetect.version) > 11) ||
-      (BrowserDetect.browser == "Netscape" && BrowserDetect.version == "5") ||
-      (BrowserDetect.browser == "Mozilla" && BrowserDetect.version == "11") // IE 11
+      (BrowserDetect.browser == "Netscape" && BrowserDetect.version == "5") // IE 11
     ) {
       console.log("Your Browser is compatible");
       FormBuilder.signIn();
@@ -103,16 +104,20 @@ const app = {
   addEditButton: function() {
     const div = document.getElementById("main");
     const editBtn = document.createElement("button");
+    const br = document.createElement("br");
     const editDiv = document.createElement("div");
     const editTxt = document.createTextNode("Edit User");
     editBtn.appendChild(editTxt);
     editBtn.classList.add("btn", "btn-dark");
+    editDiv.classList.add("col");
     editBtn.addEventListener("click", () => {
       FormBuilder.removeChildren(div);
       FormBuilder.buildForm();
+      console.log(name, this.name);
       FormBuilder.setData(this.name);
     });
     editDiv.appendChild(editBtn);
+    editDiv.style.textAlign = "left";
     div.appendChild(editDiv);
   },
 
@@ -122,14 +127,14 @@ const app = {
    * @param {String} url  : url of the dataset
    * @param {String} name : Name of the user
    */
-  fetchData: function(url, name, savedIncookie) {
+  fetchData: function(url, name) {
     const div = document.getElementById("main");
     const http = new XMLHttpRequest();
     http.open("GET", url);
     http.onreadystatechange = () => {
       if (http.readyState == 4 && http.status == 200) {
         this.data = JSON.parse(http.responseText);
-        this.init(name, savedIncookie);
+        this.init(name); ////pass name todo
       }
     };
     http.send(null);
@@ -162,15 +167,22 @@ const app = {
       }
     }
     const selDiv = document.createElement("div");
+
     let me = this;
     sel.addEventListener("change", function(e) {
       me.optionSelected(e);
     });
     sel.classList.add("text-input");
+
     selDiv.appendChild(label);
     selDiv.appendChild(br);
     selDiv.appendChild(sel);
+
     selDiv.style.opacity = 0.1;
+    selDiv.style.margin = "auto";
+    // selDiv.style.clear = "both";
+    // selDiv.style.textAlign = "center";
+
     return selDiv;
   },
 
@@ -186,6 +198,7 @@ const app = {
     this.removeParentSiblings(ele);
     if ("question" in data[ele.value]) {
       const sel = this.buildSelectElement(data[ele.value]);
+
       div.appendChild(sel);
       this.unfade(sel);
     } else {
