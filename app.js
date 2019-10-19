@@ -17,7 +17,7 @@ const app = {
     const div = document.getElementById("main");
     div.classList.add("center");
     const clearBtn = document.createElement("button");
-    // const clrDiv = document.createElement("div");
+    const clrDiv = document.createElement("div");
     const clearTxt = document.createTextNode("Start over");
     clearBtn.classList.add("btn", "btn-dark");
     clearBtn.appendChild(clearTxt);
@@ -26,9 +26,9 @@ const app = {
       this.addEditButton();
       this.addSelectionToDOM(this.data);
     });
-    div.appendChild(clearBtn);
+    clrDiv.appendChild(clearBtn);
 
-    // div.appendChild(clrDiv);
+    div.appendChild(clrDiv);
     this.addEditButton();
 
     // If user was found in cookie show chosen value,
@@ -102,7 +102,7 @@ const app = {
   addEditButton: function() {
     const div = document.getElementById("main");
     const editBtn = document.createElement("button");
-    // const editDiv = document.createElement("div");
+    const editDiv = document.createElement("div");
     const editTxt = document.createTextNode("Edit User");
     editBtn.appendChild(editTxt);
     editBtn.classList.add("btn", "btn-dark");
@@ -112,8 +112,8 @@ const app = {
       console.log(name, this.name);
       FormBuilder.setData(this.name);
     });
-    div.appendChild(editBtn);
-    // div.appendChild(editDiv);
+    editDiv.appendChild(editBtn);
+    div.appendChild(editDiv);
   },
 
   /**
@@ -144,14 +144,19 @@ const app = {
     sel.data = data;
     const dummy = document.createElement("option");
     dummy.setAttribute("value", 0);
-    dummy.textContent = "Select";
+    dummy.textContent = "What do you prefer?";
     sel.appendChild(dummy);
     const options = Object.keys(data);
     const label = document.createElement("label");
     for (let option of options) {
       if (option == "question") {
         const ques = document.createTextNode(sel.data[option]);
-        label.appendChild(ques);
+        const opt = document.createElement("option");
+        opt.setAttribute("value", option);
+        opt.textContent = option;
+        sel.appendChild(ques);
+
+        // label.appendChild(ques);
       } else {
         const opt = document.createElement("option");
         opt.setAttribute("value", option);
@@ -164,7 +169,8 @@ const app = {
     sel.addEventListener("change", function(e) {
       me.optionSelected(e);
     });
-    selDiv.appendChild(label);
+    sel.classList.add("text-input");
+    // selDiv.appendChild(label);
     selDiv.appendChild(sel);
     selDiv.style.opacity = 0.1;
     return selDiv;
