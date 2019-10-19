@@ -41,7 +41,7 @@ const Validator = {
    */
   validatePhone: function() {
     const numberNode = document.getElementById("phone");
-    if (numberNode.value.length == 14) return true;
+    if (numberNode.value.length == 10) return true;
     this.addError("Please enter a valid Phone number!", numberNode);
     numberNode.classList.add("error-text");
     numberNode.classList.remove("side-text-input");

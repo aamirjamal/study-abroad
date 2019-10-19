@@ -15,7 +15,7 @@ const FormBuilder = {
     if (options.class) input.setAttribute("class", options.class);
     if (options.value) input.setAttribute("value", options.value);
     if (options.name) input.setAttribute("name", options.name);
-    if (options.pattern) input.setAttribute("pattern", options.pattern);
+    if (options.oninput) input.setAttribute("oninput", options.oninput);
     if (options.maxlength) input.setAttribute("maxlength", options.maxlength);
     if (options.placeholder)
       input.setAttribute("placeholder", options.placeholder);
@@ -216,6 +216,12 @@ const FormBuilder = {
     console.log("Data fetch from local storage", gender, degree);
   },
 
+  onlyNumber: function(id){
+    var DataVal = document.getElementById(id).value;
+    document.getElementById(id).value = DataVal.replace(/[^0-9]/g,'');
+  },
+
+
   /**
    * Builds the form and puts it on the DOM
    */
@@ -254,7 +260,7 @@ const FormBuilder = {
     const phn = this.createTextInput({
       id: "phone",
       label: "",
-      pattern: "d*",
+      oninput: "this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\\..*)\\./g, '$1');",
       placeholder: "Phone Number",
       maxlength: "10",
       class: "side-text-input"
