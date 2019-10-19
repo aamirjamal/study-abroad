@@ -75,18 +75,20 @@ const app = {
   init: function(name, savedIncookie) {
     this.name = name;
     const div = document.getElementById("main");
+    div.classList.add("center");
     const clearBtn = document.createElement("button");
-    const clrDiv = document.createElement("div");
+    // const clrDiv = document.createElement("div");
     const clearTxt = document.createTextNode("Start over");
+    clearBtn.classList.add("btn", "btn-dark");
     clearBtn.appendChild(clearTxt);
     clearBtn.addEventListener("click", () => {
       this.removeParentSiblings(clearBtn);
       this.addEditButton();
       this.addSelectionToDOM(this.data);
     });
-    clrDiv.appendChild(clearBtn);
+    div.appendChild(clearBtn);
 
-    div.appendChild(clrDiv);
+    // div.appendChild(clrDiv);
     this.addEditButton();
 
     // If user was found in cookie show chosen value,
@@ -160,17 +162,18 @@ const app = {
   addEditButton: function() {
     const div = document.getElementById("main");
     const editBtn = document.createElement("button");
-    const editDiv = document.createElement("div");
+    // const editDiv = document.createElement("div");
     const editTxt = document.createTextNode("Edit User");
     editBtn.appendChild(editTxt);
+    editBtn.classList.add("btn", "btn-dark");
     editBtn.addEventListener("click", () => {
       FormBuilder.removeChildren(div);
       FormBuilder.buildForm();
       console.log(name, this.name);
       FormBuilder.setData(this.name);
     });
-    editDiv.appendChild(editBtn);
-    div.appendChild(editDiv);
+    div.appendChild(editBtn);
+    // div.appendChild(editDiv);
   },
 
   /**

@@ -78,6 +78,7 @@ body {
 
 .btn {
   margin-top: 2vh;
+  margin-bottom: 2vh;
   width: 10vw;
   border: #e57373;
   background-color: #e57373;
@@ -88,6 +89,7 @@ body {
   font-size: 2vh;
   margin-left: 2vw;
   margin-left: 2vw;
+  display: inline;
 }
 
 .btn:hover {
@@ -95,5 +97,50 @@ body {
 }
 
 .input-form {
+  text-align: center;
+}
+
+.error-text {
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  width: 25vw;
+  height: 5vh;
+  font-size: 3vh;
+  padding: 0 10px 0 10px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  border-color: #c62828;
+  color: #c62828;
+  border-style: solid;
+}
+
+.error-text::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #c62828;
+  opacity: 1; /* Firefox */
+}
+
+.error-text:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #c62828;
+}
+
+.error-text::-ms-input-placeholder { /* Microsoft Edge */
+  color: #c62828;
+}
+
+.error-text:focus {
+  color: #c62828;
+}
+
+select {
+  margin-bottom: 2vh;
+  background-color: #fff;
+}
+
+.left-col {
+  color: #c62828;
+}
+
+.center {
   text-align: center;
 }

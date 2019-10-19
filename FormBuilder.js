@@ -21,6 +21,7 @@ const FormBuilder = {
     const labelEle = document.createElement("label");
     if (options.id) labelEle.setAttribute("for", options.id);
     const label = document.createTextNode(options.label);
+
     labelEle.appendChild(label);
     div.appendChild(labelEle);
     div.appendChild(input);
@@ -35,6 +36,7 @@ const FormBuilder = {
     const div = document.createElement("fieldset");
     const labelEle = document.createElement("legend");
     const label = document.createTextNode(options.label);
+
     labelEle.appendChild(label);
     div.appendChild(labelEle);
     for (val of options.values) {
@@ -59,7 +61,7 @@ const FormBuilder = {
     const sel = document.createElement("select");
     const dummy = document.createElement("option");
     dummy.setAttribute("value", 0);
-    dummy.textContent = "Select";
+    dummy.textContent = options.defaultValue;
     sel.appendChild(dummy);
     if (options.id) sel.setAttribute("id", options.id);
     if (options.class) sel.setAttribute("class", options.class);
@@ -76,7 +78,7 @@ const FormBuilder = {
     if (options.id) labelEle.setAttribute("for", options.id);
     const label = document.createTextNode(options.label);
     labelEle.appendChild(label);
-    div.appendChild(labelEle);
+    // div.appendChild(labelEle);
     div.appendChild(sel);
     return div;
   },
@@ -277,19 +279,22 @@ const FormBuilder = {
       id: "degree",
       label: "Degree:",
       values: ["Undergrad", "Grad", "PhD"],
-      class: "side-text-input"
+      class: "side-text-input",
+      defaultValue: "Select Degree:"
     });
     const gender = this.createSelectInput({
       id: "gender",
       label: "Gender:",
-      values: ["Male", "Female"],
-      class: "side-text-input"
+      values: ["Male", "Female", "Non Binary"],
+      class: "side-text-input",
+      defaultValue: "Select Gender:"
     });
     const dataset = this.createSelectInput({
       id: "dataset",
       label: "Dataset:",
       values: ["Dataset1", "Dataset2"],
-      class: "side-text-input"
+      class: "side-text-input",
+      defaultValue: "Select Dataset:"
     });
 
     const btn = document.createElement("button");
