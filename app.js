@@ -128,14 +128,14 @@ const app = {
    * @param {String} url  : url of the dataset
    * @param {String} name : Name of the user
    */
-  fetchData: function(url, name) {
+  fetchData: function(url, name, isInCookie) {
     const div = document.getElementById("main");
     const http = new XMLHttpRequest();
     http.open("GET", url);
     http.onreadystatechange = () => {
       if (http.readyState == 4 && http.status == 200) {
         this.data = JSON.parse(http.responseText);
-        this.init(name); ////pass name todo
+        this.init(name, isInCookie); ////pass name todo
       }
     };
     http.send(null);
