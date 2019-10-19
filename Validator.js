@@ -96,7 +96,8 @@ const Validator = {
 
   removeError: function(node) {
     node.parentNode.childNodes.forEach(function(item) {
-      if (item.nodeName === "p") node.parentNode.removeChild(item);
+        console.log(item.nodeName);
+      if (item.nodeName === "P") node.parentNode.removeChild(item);
       console.log(item);
     });
   },
