@@ -180,6 +180,7 @@ const app = {
 
         selDiv.style.opacity = 0.1;
         selDiv.style.margin = "auto";
+        selDiv.style.width = "100%";
         // selDiv.style.clear = "both";
         // selDiv.style.textAlign = "center";
 
