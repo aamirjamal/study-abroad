@@ -1,49 +1,53 @@
-// {
-//   "cities": {
-//     "Arabic": {
-//       "Ancient cities": "Middle East Studies",
-//       "New cities": "Rit Dubai- Direct enroll"
-//     },
-//     "Spanish": {
-//       "Humanites": "Advanced liberal Arts - Barcelona",
-//       "Sciences": "Santiago - Health Studies"
-//     }
-//   },
-//   "nature": {
-//     "Mountains": {
-//       "South America": "Semester in Cusco",
-//       "Asia": "Big cats of the Himalayas"
-//     },
-//     "Islands": {
-//       "Caribbean": "Marine Resource Studies",
-//       "South Pacific": "Protecting the Phoenix Islands"
-//     }
-//   }
-// },
 {
-  "question": "what do you prefer cities or nature?",
+  "question": "What do you prefer?",
   "cities": {
-    "question": "what type of city?",
+    "question": "What do you prefer?",
     "Arabic": {
-      "Ancient cities": "Middle East Studies",
-      "New cities": "Rit Dubai- Direct enroll"
+      "question": "What do you prefer?",
+      "Ancient cities": {
+        "text": "Middle East Studies",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=0f30e6c7e993fafeda90e8dde9b83467"
+      },
+      "New cities": {
+        "text": "Rit Dubai- Direct enroll",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=0e062b2cfb65db2f6778cd26aad9311d"
+      }
     },
     "Spanish": {
-      "Humanites": "Advanced liberal Arts - Barcelona",
-      "Sciences": "Santiago - Health Studies"
+      "question": "What do you prefer?",
+      "Humanites": {
+        "text": "Advanced liberal Arts - Barcelona",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=473cb41401b20b3d91b31432e80e8e4f"
+      },
+      "Sciences": {
+        "text": "Santiago - Health Studies",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=89894ba735af3935a4611a2205fff648"
+      }
     }
   },
   "nature": {
-    "question": "what type of nature?",
+    "question": "What do you prefer?",
     "Mountains": {
-      "question": "Where mountains?",
-      "South America": "Semester in Cusco",
-      "Asia": "Big cats of the Himalayas"
+      "question": "What do you prefer?",
+      "South America": {
+        "text": "Semester in Cusco",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=ae8939c42459a2b58f247a8e2cff284b"
+      },
+      "Asia": {
+        "text": "Big cats of the Himalayas",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=ddbf516c2873f7087f3d631ca7f239a2"
+      }
     },
     "Islands": {
-      "question": "what islands?",
-      "Caribbean": "Marine Resource Studies",
-      "South Pacific": "Protecting the Phoenix Islands"
+      "question": "What do you prefer?",
+      "Caribbean": {
+        "text": "Marine Resource Studies",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=e66910d6fcad2576bea3f4a4dcef3897"
+      },
+      "South Pacific": {
+        "text": "Protecting the Phoenix Islands",
+        "link": "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=1008cf2cf5051059f9138d0787a23388"
+      }
     }
   }
 }

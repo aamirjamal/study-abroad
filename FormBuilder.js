@@ -1,4 +1,11 @@
+/**
+ * Mainly responsible for building the form dynamically.
+ */
 const FormBuilder = {
+  /**
+   * This is a constructor function for input elements.
+   * @param {Object} options : options that are mostly attributes for the Input element
+   */
   createTextInput: function(options = {}) {
     const div = document.createElement("div");
     div.setAttribute("class", "form-group");
@@ -20,6 +27,10 @@ const FormBuilder = {
     return div;
   },
 
+  /**
+   * Constructor function for radio buttons.
+   * @param {Object} options : attributes for radio input
+   */
   createRadioInput: function(options = {}) {
     const div = document.createElement("fieldset");
     const labelEle = document.createElement("legend");
@@ -39,6 +50,10 @@ const FormBuilder = {
     return div;
   },
 
+  /**
+   * Constructor function for select element
+   * @param {Object} options : Attributes for select element
+   */
   createSelectInput: function(options = {}) {
     const div = document.createElement("div");
     const sel = document.createElement("select");
@@ -66,6 +81,10 @@ const FormBuilder = {
     return div;
   },
 
+  /**
+   * Gets the selected val of radio group
+   * @param {String} name : name of the radio group
+   */
   getRadioVal: function(name) {
     const radios = document.getElementsByName(name);
     for (radio of radios) {
@@ -73,12 +92,19 @@ const FormBuilder = {
     }
   },
 
+  /**
+   * Removes all children nodes of passed in element.
+   * @param {Element} element : element whose children need to be removed
+   */
   removeChildren: function(element) {
     while (element.hasChildNodes()) {
       element.removeChild(element.lastChild);
     }
   },
 
+  /**
+   * Generates a sign in page asking user name.
+   */
   signIn: function() {
     const mainTitle = document.createElement("p");
     const mainTitleText = document.createTextNode("Love With Location");
@@ -113,30 +139,31 @@ const FormBuilder = {
     form.appendChild(nextButton);
   },
 
+  /**
+   * Checks if the user signing in exists in the local storage or not.
+   */
   checkExisting: function() {
     const name = document.getElementById("name").value;
     this.name = name;
     this.removeChildren(document.getElementById("form"));
     const names = localStorage.getItem("names");
+    // Checking if user exists in local storage (signed in before).
     if (names != null && names.indexOf("~" + name + "~") > -1) {
-      console.log("User Exists");
       this.welcome(name);
       const userName = cookies.getCookie(name);
-      if (userName) {
-        console.log("cookie userName", userName);
-        app.init(name, true);
-      } else {
-        console.log("username not found in cookie");
-        app.init(name, false);
-        // this.buildForm();
-        // document.getElementById("name").value = name;
-      }
+      // Checking if user exists in cookies (Selected the location).
+      if (userName) app.init(name, true);
+      else app.init(name, false);
     } else {
       this.buildForm();
       document.getElementById("name").value = name;
     }
   },
 
+  /**
+   * Prints welcome message for old users.
+   * @param {String} name : name of the user.
+   */
   welcome: function(name) {
     const form = document.getElementById("form");
     const h5ele = document.createElement("h5");
@@ -145,6 +172,10 @@ const FormBuilder = {
     form.appendChild(h5ele);
   },
 
+  /**
+   * Gets the data from the form and stores it in
+   * local storage.
+   */
   getData: function() {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
@@ -161,6 +192,10 @@ const FormBuilder = {
     console.log("Data set in local storage");
   },
 
+  /**
+   * Fetches data from local storage and stores it into the form.
+   * @param {String} name : name of the user
+   */
   setData: function(name) {
     const email = localStorage.getItem(name + "~email");
     const phn = localStorage.getItem(name + "~phone");
@@ -178,9 +213,14 @@ const FormBuilder = {
     console.log("Data fetch from local storage", gender, degree);
   },
 
+  /**
+   * Builds the form and puts it on the DOM
+   */
   buildForm: function() {
     const sideTitle = document.createElement("p");
-    const sideTitleText = document.createTextNode("Love Finder");
+    const sideTitleText = document.createTextNode(
+      "Valentine's Destination Finder"
+    );
     sideTitle.classList.add("side-title");
     sideTitle.appendChild(sideTitleText);
     const sideTitleIcon = document.createElement("i");

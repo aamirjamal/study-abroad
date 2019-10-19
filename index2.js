@@ -218,7 +218,7 @@ const app = {
     const selDiv = document.createElement("div");
     let me = this;
     sel.addEventListener("change", function(e) {
-      me.optionSelected(e, this);
+      me.optionSelected(e);
     });
     selDiv.appendChild(label);
     selDiv.appendChild(sel);
@@ -226,9 +226,15 @@ const app = {
     return selDiv;
   },
 
-  optionSelected: function(e, ele) {
+  /**
+   * Event handler for change on selection.
+   * Creates a new Select element on the basis of selection.
+   * @param {Event} e : change event
+   */
+  optionSelected: function(e) {
     const div = document.getElementById("main");
-    const data = e.target.data;
+    const ele = e.target;
+    const data = ele.data;
     this.removeParentSiblings(ele);
     if ("question" in data[ele.value]) {
       const sel = this.buildSelectElement(data[ele.value]);
@@ -251,12 +257,21 @@ const app = {
     }
   },
 
+  /**
+   * Adds the select element on to DOM and gives a fade
+   * in animation.
+   * @param {Object} data : data for the select options
+   */
   addSelectionToDOM: function(data) {
     const sel = this.buildSelectElement(this.data);
     document.getElementById("main").appendChild(sel);
     this.unfade(sel);
   },
 
+  /**
+   * Fades in an element by using setTimeout animation.
+   * @param {DOM Element} element
+   */
   unfade: function(element) {
     element.style.opacity = parseFloat(element.style.opacity) + 0.1;
     if (element.style.opacity > 1.0) {
@@ -268,6 +283,10 @@ const app = {
     }
   },
 
+  /**
+   * Removes all the siblings of the parent element.
+   * @param {Element} sel
+   */
   removeParentSiblings: function(sel) {
     while (sel.parentNode.nextSibling != null) {
       sel.parentNode.nextSibling.remove();
