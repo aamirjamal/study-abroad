@@ -40,12 +40,16 @@ const Validator = {
     return false;
   },
 
-  // validateSelect: function(id) {
-  //   const val = document.getElementById(id).value;
-  //   if (val != 0) return true;
-  //   this.addError(`Please select a ${id}!`);
-  //   return false;
-  // },
+  /**
+   * Validates the select element
+   * @param {String} id : id of the select element to validate
+   */
+  validateSelect: function(id) {
+    const val = document.getElementById(id).value;
+    if (val != 0) return true;
+    this.addError(`Please select a ${id}!`);
+    return false;
+  },
 
   /**
    * Validates radio buttons
@@ -83,9 +87,9 @@ const Validator = {
     isNameValid = this.validateName();
     isEmailValid = this.validateEmail();
     isNumberValid = this.validatePhone();
-    isGenderValid = this.validateRadio("Gender");
-    isDegreeValid = this.validateRadio("Degree");
-    isDatasetValid = this.validateRadio("Dataset");
+    isGenderValid = this.validateSelect("gender");
+    isDegreeValid = this.validateSelect("degree");
+    isDatasetValid = this.validateSelect("dataset");
     return (
       isNameValid &&
       isEmailValid &&

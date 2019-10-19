@@ -180,8 +180,9 @@ const FormBuilder = {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const phn = document.getElementById("phone").value;
-    const gender = this.getRadioVal("Gender");
-    const degree = this.getRadioVal("Degree");
+    const gender = document.getElementById("gender").value;
+    const degree = document.getElementById("degree").value;
+    const dataset = document.getElementById("dataset").value;
     if (!localStorage.getItem("names")) localStorage.setItem("names", "");
     const names = localStorage.getItem("names");
     localStorage.setItem("names", names + "~" + name + "~");
@@ -189,6 +190,7 @@ const FormBuilder = {
     localStorage.setItem(name + "~phn", phn);
     localStorage.setItem(name + "~gender", gender);
     localStorage.setItem(name + "~degree", degree);
+    localStorage.setItem(name + "~dataset", dataset);
     console.log("Data set in local storage");
   },
 
@@ -201,15 +203,19 @@ const FormBuilder = {
     const phn = localStorage.getItem(name + "~phone");
     const gender = localStorage.getItem(name + "~gender");
     const degree = localStorage.getItem(name + "~degree");
+    const dataset = localStorage.getItem(name + "~dataset");
     document.getElementById("name").value = name;
     document.getElementById("email").value = email;
     document.getElementById("phone").value = phn;
-    if (gender == "Male") document.getElementById("Male").checked = true;
-    if (gender == "Female") document.getElementById("Female").checked = true;
-    if (degree == "Bachelors")
-      document.getElementById("Bachelors").checked = true;
-    if (degree == "Masters") document.getElementById("Masters").checked = true;
-    if (degree == "PhD") document.getElementById("PhD").checked = true;
+    document.getElementById("gender").value = gender;
+    document.getElementById("degree").value = degree;
+    document.getElementById("dataset").value = dataset;
+    // if (gender == "Male") document.getElementById("Male").checked = true;
+    // if (gender == "Female") document.getElementById("Female").checked = true;
+    // if (degree == "Bachelors")
+    //   document.getElementById("Bachelors").checked = true;
+    // if (degree == "Masters") document.getElementById("Masters").checked = true;
+    // if (degree == "PhD") document.getElementById("PhD").checked = true;
     console.log("Data fetch from local storage", gender, degree);
   },
 
@@ -255,24 +261,36 @@ const FormBuilder = {
       maxlength: "10",
       class: "side-text-input"
     });
-    const gender = this.createRadioInput({
-      label: "Gender",
-      values: ["Male", "Female"]
-    });
-    const degree = this.createRadioInput({
-      label: "Degree",
-      values: ["Bachelors", "Masters", "PhD"]
-    });
-    const dataset = this.createRadioInput({
-      label: "Dataset",
-      values: ["Dataset1", "Dataset2"]
-    });
-    // const degree = this.createSelectInput({
-    //   id: "degree",
-    //   label: "Degree:",
-    //   values: ["Undergrad", "Grad", "PhD"],
-    //   class: "side-text-input"
+    // const gender = this.createRadioInput({
+    //   label: "Gender",
+    //   values: ["Male", "Female"]
     // });
+    // const degree = this.createRadioInput({
+    //   label: "Degree",
+    //   values: ["Bachelors", "Masters", "PhD"]
+    // });
+    // const dataset = this.createRadioInput({
+    //   label: "Dataset",
+    //   values: ["Dataset1", "Dataset2"]
+    // });
+    const degree = this.createSelectInput({
+      id: "degree",
+      label: "Degree:",
+      values: ["Undergrad", "Grad", "PhD"],
+      class: "side-text-input"
+    });
+    const gender = this.createSelectInput({
+      id: "gender",
+      label: "Gender:",
+      values: ["Male", "Female"],
+      class: "side-text-input"
+    });
+    const dataset = this.createSelectInput({
+      id: "dataset",
+      label: "Dataset:",
+      values: ["Dataset1", "Dataset2"],
+      class: "side-text-input"
+    });
 
     const btn = document.createElement("button");
     const btnTxt = document.createTextNode("Find ");
