@@ -49,7 +49,8 @@ const app = {
         parseInt(BrowserDetect.version) > 65) ||
       (BrowserDetect.browser == "Safari" &&
         parseInt(BrowserDetect.version) > 11) ||
-      (BrowserDetect.browser == "Netscape" && BrowserDetect.version == "5") // IE 11
+      (BrowserDetect.browser == "Netscape" && BrowserDetect.version == "5") ||
+      (BrowserDetect.browser == "Mozilla" && BrowserDetect.version == "11") // IE 11
     ) {
       console.log("Your Browser is compatible");
       FormBuilder.signIn();
