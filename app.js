@@ -211,6 +211,7 @@ const app = {
             cookies.setCookie(this.name, data[ele.value].text);
             cookies.setCookie(data[ele.value].text, data[ele.value].link);
             const a = document.createElement("a");
+            a.style.margin = "auto";
             const ans = document.createTextNode(data[ele.value].text);
             a.appendChild(ans);
             a.setAttribute("href", data[ele.value].link);
