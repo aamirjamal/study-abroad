@@ -155,6 +155,7 @@ const FormBuilder = {
       this.welcome(name);
       const userName = cookies.getCookie(name);
       // Checking if user exists in cookies (Selected the location).
+      console.log("username in cookie", userName);
       const dataset = localStorage.getItem(name + "~dataset");
       const url = this.getURLFromDataset(dataset);
       if (userName) app.fetchData(url, name, true);
@@ -174,7 +175,7 @@ const FormBuilder = {
     const h5ele = document.createElement("h5");
     const msg = document.createTextNode(`Welcome again ${name}!`);
     h5ele.style.marginTop = "30px";
-    h5ele.classList.add("side-title")
+    h5ele.classList.add("side-title");
     h5ele.appendChild(msg);
     form.appendChild(h5ele);
   },
@@ -224,15 +225,24 @@ const FormBuilder = {
     document.getElementById(id).value = DataVal.replace(/[^0-9]/g, "");
   },
 
+  // /**
+  //  * Returns the url on the basis of dataset chosen.
+  //  * @param {String} dataset : Dataset name
+  //  */
+  // getURLFromDataset: function getURLFromDataset(dataset) {
+  //   if (dataset == "Dataset1")
+  //     return "http://serenity.ist.rit.edu/~aj1243/project1/data1.json";
+  //   return "http://serenity.ist.rit.edu/~aj1243/project1//data2.json";
+  // },
   /**
    * Returns the url on the basis of dataset chosen.
    * @param {String} dataset : Dataset name
    */
-  getURLFromDataset: function(dataset) {
-    if (dataset == "dataset1")
+
+  getURLFromDataset: function getURLFromDataset(dataset) {
+    if (dataset == "Dataset1")
       return "https://raw.githubusercontent.com/aamirjamal/study-abroad/master/data1.json";
-    else
-      return "https://raw.githubusercontent.com/aamirjamal/study-abroad/master/data2.json";
+    return "https://raw.githubusercontent.com/aamirjamal/study-abroad/master/data2.json";
   },
 
   /**
