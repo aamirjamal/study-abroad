@@ -212,12 +212,6 @@ const FormBuilder = {
     document.getElementById("gender").value = gender;
     document.getElementById("degree").value = degree;
     document.getElementById("dataset").value = dataset;
-    // if (gender == "Male") document.getElementById("Male").checked = true;
-    // if (gender == "Female") document.getElementById("Female").checked = true;
-    // if (degree == "Bachelors")
-    //   document.getElementById("Bachelors").checked = true;
-    // if (degree == "Masters") document.getElementById("Masters").checked = true;
-    // if (degree == "PhD") document.getElementById("PhD").checked = true;
     console.log("Data fetch from local storage", gender, degree);
   },
 
@@ -263,18 +257,6 @@ const FormBuilder = {
       maxlength: "10",
       class: "side-text-input"
     });
-    // const gender = this.createRadioInput({
-    //   label: "Gender",
-    //   values: ["Male", "Female"]
-    // });
-    // const degree = this.createRadioInput({
-    //   label: "Degree",
-    //   values: ["Bachelors", "Masters", "PhD"]
-    // });
-    // const dataset = this.createRadioInput({
-    //   label: "Dataset",
-    //   values: ["Dataset1", "Dataset2"]
-    // });
     const degree = this.createSelectInput({
       id: "degree",
       label: "Degree:",
@@ -321,11 +303,15 @@ const FormBuilder = {
     btn.addEventListener("click", () => {
       if (Validator.validate()) {
         this.getData();
+        const dataset = document.getElementById("dataset").value;
+        let url =
+          "https://raw.githubusercontent.com/aamirjamal/study-abroad/master/data1.json";
+        if (dataset == "Dataset2")
+          url =
+            "https://raw.githubusercontent.com/aamirjamal/study-abroad/master/data2.json";
+
         this.removeChildren(form);
-        // app.fetchData(
-        //   `https://raw.githubusercontent.com/ashwani20/Interactive-Form-Elements/6c90df5c3eafd4c6e173ef796f4d0de85ed96524/data1.json`
-        // );
-        app.init(this.name);
+        app.fetchData(url, this.name);
       }
     });
 

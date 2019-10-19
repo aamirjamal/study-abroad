@@ -3,67 +3,7 @@
  * and setting the cookie values for selected location.
  */
 const app = {
-  data: {
-    question: "What do you prefer?",
-    cities: {
-      question: "What do you prefer?",
-      Arabic: {
-        question: "What do you prefer?",
-        "Ancient cities": {
-          text: "Middle East Studies",
-          link:
-            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=0f30e6c7e993fafeda90e8dde9b83467"
-        },
-        "New cities": {
-          text: "Rit Dubai- Direct enroll",
-          link:
-            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=0e062b2cfb65db2f6778cd26aad9311d"
-        }
-      },
-      Spanish: {
-        question: "What do you prefer?",
-        Humanites: {
-          text: "Advanced liberal Arts - Barcelona",
-          link:
-            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=473cb41401b20b3d91b31432e80e8e4f"
-        },
-        Sciences: {
-          text: "Santiago - Health Studies",
-          link:
-            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=89894ba735af3935a4611a2205fff648"
-        }
-      }
-    },
-    nature: {
-      question: "What do you prefer?",
-      Mountains: {
-        question: "What do you prefer?",
-        "South America": {
-          text: "Semester in Cusco",
-          link:
-            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=ae8939c42459a2b58f247a8e2cff284b"
-        },
-        Asia: {
-          text: "Big cats of the Himalayas",
-          link:
-            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=ddbf516c2873f7087f3d631ca7f239a2"
-        }
-      },
-      Islands: {
-        question: "What do you prefer?",
-        Caribbean: {
-          text: "Marine Resource Studies",
-          link:
-            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=e66910d6fcad2576bea3f4a4dcef3897"
-        },
-        "South Pacific": {
-          text: "Protecting the Phoenix Islands",
-          link:
-            "https://rit-horizons.symplicity.com/index.php?s=programs&mode=form&id=1008cf2cf5051059f9138d0787a23388"
-        }
-      }
-    }
-  },
+  data: {},
 
   name: undefined,
 
@@ -179,16 +119,17 @@ const app = {
   /**
    * Fetches the data from the url and creates selection
    * elements dynamically on its basis.
-   * @param {String} url
+   * @param {String} url  : url of the dataset
+   * @param {String} name : Name of the user
    */
-  fetchData: function(url) {
+  fetchData: function(url, name) {
     const div = document.getElementById("main");
     const http = new XMLHttpRequest();
     http.open("GET", url);
     http.onreadystatechange = () => {
       if (http.readyState == 4 && http.status == 200) {
         this.data = JSON.parse(http.responseText);
-        this.addSelectionToDOM(this.data);
+        this.init(name); ////pass name todo
       }
     };
     http.send(null);
