@@ -40,13 +40,13 @@ const FormBuilder = {
 
     labelEle.appendChild(label);
     div.appendChild(labelEle);
-    for (val of options.values) {
+    for (val1 of options.values) {
       const radio = this.createTextInput({
-        id: val,
-        label: val,
+        id: val1,
+        label: val1,
         type: "radio",
         name: options.label,
-        value: val
+        value: val1
       });
       div.appendChild(radio);
     }
@@ -68,10 +68,10 @@ const FormBuilder = {
     if (options.class) sel.setAttribute("class", options.class);
     if (options.values) {
       const vals = options.values;
-      for (val of vals) {
+      for (val1 of vals) {
         const opt = document.createElement("option");
-        opt.setAttribute("value", val);
-        opt.textContent = val;
+        opt.setAttribute("value", val1);
+        opt.textContent = val1;
         sel.appendChild(opt);
       }
     }
