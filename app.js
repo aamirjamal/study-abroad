@@ -94,27 +94,26 @@ const app = {
     div.appendChild(a);
   },
 
-    /**
-     * Constructs and add the button which leads to
-     * user form editing and sets the data onto the
-     * form from local storage.
-     */
-    addEditButton: function () {
-        const div = document.getElementById("main");
-        const editBtn = document.createElement("button");
-        const editDiv = document.createElement("div");
-        const editTxt = document.createTextNode("Edit User");
-        editBtn.appendChild(editTxt);
-        editBtn.classList.add("btn", "btn-dark");
-        editBtn.addEventListener("click", () => {
-            FormBuilder.removeChildren(div);
-            FormBuilder.buildForm();
-            console.log(name, this.name);
-            FormBuilder.setData(this.name);
-        });
-        editDiv.appendChild(editBtn);
-        div.appendChild(editDiv);
-    },
+  /**
+   * Constructs and add the button which leads to
+   * user form editing and sets the data onto the
+   * form from local storage.
+   */
+  addEditButton: function() {
+    const div = document.getElementById("main");
+    const editBtn = document.createElement("button");
+    const editDiv = document.createElement("div");
+    const editTxt = document.createTextNode("Edit User");
+    editBtn.appendChild(editTxt);
+    editBtn.classList.add("btn", "btn-dark");
+    editBtn.addEventListener("click", () => {
+      FormBuilder.removeChildren(div);
+      FormBuilder.buildForm();
+      FormBuilder.setData(this.name);
+    });
+    editDiv.appendChild(editBtn);
+    div.appendChild(editDiv);
+  },
 
   /**
    * Fetches the data from the url and creates selection

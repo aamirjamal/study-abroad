@@ -206,7 +206,7 @@ const FormBuilder = {
    */
   setData: function(name) {
     const email = localStorage.getItem(name + "~email");
-    const phn = localStorage.getItem(name + "~phone");
+    const phn = localStorage.getItem(name + "~phn");
     const gender = localStorage.getItem(name + "~gender");
     const degree = localStorage.getItem(name + "~degree");
     const dataset = localStorage.getItem(name + "~dataset");
@@ -216,7 +216,6 @@ const FormBuilder = {
     document.getElementById("gender").value = gender;
     document.getElementById("degree").value = degree;
     document.getElementById("dataset").value = dataset;
-    console.log("Data fetch from local storage", gender, degree);
   },
 
   onlyNumber: function(id) {
