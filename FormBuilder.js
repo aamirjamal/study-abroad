@@ -174,6 +174,7 @@ const FormBuilder = {
     const h5ele = document.createElement("h5");
     const msg = document.createTextNode(`Welcome again ${name}!`);
     h5ele.style.marginTop = "30px";
+    h5ele.classList.add("side-title")
     h5ele.appendChild(msg);
     form.appendChild(h5ele);
   },
